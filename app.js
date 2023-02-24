@@ -41,6 +41,10 @@ numberButtons.forEach(number => {
     console.log(number);
     number.addEventListener('click', () => {
         if(content.textContent.length < 25 && inputNumbers && (valueOne != valueThree)){
+            console.log(content.textContent == '0');
+            if(content.textContent == '0'){
+                content.textContent = '';
+            }
             content.textContent += number.textContent;
             valueOne += number.textContent;
             console.log(`from # click, inputValueOne should be true: ${inputValueOne}, valueOne: ${valueOne}`);
@@ -63,7 +67,6 @@ operators.forEach(operator => {
         (content.textContent.slice(-2,-1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
-            
             inputNumbers = true;
             //inputValueOne = !inputValueOne;
             operatorOrder.push(operator.textContent)
