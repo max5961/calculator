@@ -87,9 +87,9 @@ function operate(value1, value2, value3, operatorOrder){
         } else if(operator == '-'){
             value3 = Number(value1) - Number(value2);
         } else if(operator == '*'){
-            value3 = Number(value1) * Number(value2);
+            value3 = Number(value1);
         } else if(operator == '/'){
-            value3 = Number(value1) / Number(value2);
+            value3 = Number(value1);
         }
     } else if(operatorOrder.length > 1){
         console.log(operatorOrder[operatorOrder.length - 2]);
