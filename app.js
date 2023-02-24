@@ -57,19 +57,20 @@ numberButtons.forEach(number => {
     })
 
 operators = [add, divide, multiply, subtract]
-
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
         (content.textContent.slice(-2,-1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
-            content.textContent += ` ${operator.textContent} `;
+            
             inputNumbers = true;
-            inputValueOne = !inputValueOne;
+            //inputValueOne = !inputValueOne;
             operatorOrder.push(operator.textContent)
             valueThree = operate(valueOne, valueTwo, valueThree, operatorOrder);
             outputValue.textContent = valueThree;
+            content.textContent = valueThree;
+            content.textContent += ` ${operator.textContent} `;
             valueOne = valueThree;
             valueTwo = '';
             
@@ -77,6 +78,15 @@ operators.forEach(operator => {
             console.log(`from OPERATOR click, inputValueOne should be false: ${inputValueOne}, valueTwo: ${valueTwo}`);
         }
     })
+})
+
+equals.addEventListener('click', () => {
+    valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
+    outputValue.textContent = valueThree;
+    content.textContent = valueThree;
+    operatorOrder = [];
+    valueOne = valueThree;
+    valueTwo = '';
 })
 
 function operate(value1, value2, value3, operatorOrder){
@@ -107,6 +117,22 @@ function operate(value1, value2, value3, operatorOrder){
 
     return value3;
 }
+
+
+function finalOperate(value1, value2, value3, operatorOrder){
+    if(operatorOrder[operatorOrder.length - 1] == '+'){
+        value3 = Number(value1) + Number(value2);
+    } else if(operatorOrder[operatorOrder.length - 1] == '-'){
+        value3 = Number(value1) - Number(value2);
+    } else if(operatorOrder[operatorOrder.length - 1] == '*'){
+        value3 = Number(value1) * Number(value2);
+    } else if(operatorOrder[operatorOrder.length - 1] == '/'){
+        value3 = Number(value1) / Number(value2);
+    }
+
+    return value3;
+}
+
 
 
 
