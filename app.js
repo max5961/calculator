@@ -21,8 +21,6 @@ const seven = document.getElementById('seven');
 const eight = document.getElementById('eight');
 const nine = document.getElementById('nine');
 const zero = document.getElementById('zero');
-const leftP = document.getElementById('leftP');
-const rightP = document.getElementById('rightP');
 const decimalPoint = document.getElementById('decimalPoint');
 
 //operators
@@ -32,11 +30,21 @@ const subtract = document.getElementById('subtract');
 const add = document.getElementById('add');
 const modulo = document.getElementById('modulo');
 
-//equals and clear
+//equals, clear, backspace
 const equals = document.getElementById('equals');
 const clear = document.getElementById('clear');
+const backspace = document.getElementById('backspace');
 
-numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero, rightP, leftP, decimalPoint];
+function checkIfOperatorInput(content){
+    return (content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
+    (content.textContent.slice(-2,-1) != '-') &&
+    (content.textContent.slice(-2,-1) != '*') &&
+    (content.textContent.slice(-2,-1) != '/')
+}
+
+//backspace.addEventListener('click', () => {}
+
+numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero, decimalPoint];
 numberButtons.forEach(number => {
     console.log(number);
     number.addEventListener('click', () => {
@@ -90,6 +98,7 @@ equals.addEventListener('click', () => {
     operatorOrder = [];
     valueOne = valueThree;
     valueTwo = '';
+    inputNumbers = false;
 })
 
 function operate(value1, value2, value3, operatorOrder){
