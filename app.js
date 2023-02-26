@@ -129,7 +129,20 @@ decimalPoint.addEventListener('click', () => {
 operators = [add, multiply, subtract, divide]
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
-        if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
+
+        //vallow negative numbers
+        console.log(`this is the content.textContent: ${content.textContent}`)
+        if(operator == subtract && content.textContent == '0'){
+            content.textContent = subtract.textContent;
+            valueOne += subtract.textContent;
+        }
+
+        else if(operator == subtract && content.textContent.slice(-1) == ' '){
+            content.textContent += subtract.textContent;
+            valueTwo += subtract.textContent;
+        }
+
+        else if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
         (content.textContent.slice(-2,-1) != '-' || content.textContent.slice(1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
