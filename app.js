@@ -7,6 +7,7 @@ operatorOrder = [];
 
 let inputValueOne = true;
 let inputNumbers = true;
+let afterEquals = false;
 let content = document.getElementById('console');
 let outputValue = document.getElementById('outputValue');
 
@@ -59,6 +60,10 @@ numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero];
 numberButtons.forEach(number => {
     console.log(number);
     number.addEventListener('click', () => {
+        if(afterEquals == true && inputNumbers == false){
+            clearResults();
+        }
+
         if(content.textContent.length < 25 && inputNumbers && (valueOne != valueThree)){
             console.log(content.textContent == '0');
             if(content.textContent == '0'){
@@ -154,6 +159,7 @@ equals.addEventListener('click', () => {
     valueOne = valueThree;
     valueTwo = '';
     inputNumbers = false;
+    afterEquals = true;
 })
 
 
