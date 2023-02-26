@@ -48,12 +48,14 @@ function clearResults(){
 
 clear.addEventListener('click', clearResults);
 
+/*
 function checkIfOperatorInput(content){
     return (content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
     (content.textContent.slice(-2,-1) != '-') &&
     (content.textContent.slice(-2,-1) != '*') &&
     (content.textContent.slice(-2,-1) != '/');
 }
+*/
 
 
 numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero];
@@ -123,14 +125,76 @@ decimalPoint.addEventListener('click', () => {
         }
     }
 })
-    
+
+function backTick(string){
+    if(string == '0' || string == ''){
+        return string;
+    }
+
+    else if(string.split(' ')[2]){
+        let arrayString = string.split(' ')[2].toString().split('');
+        arrayString.pop()
+        let removedString = '';
+        arrayString.forEach(char => {
+            removedString += char;
+        })
+        string = string.split(' ')[0] + ` ${string.split(' ')[1]} ` + removedString;
+        return string;
+    }
+
+    else if(string.split(' ')[1]){
+        arrayString = string.split(' ')[0].toString().split('');
+        removedString = '';
+        arrayString.forEach(char => {
+            removedString += char;
+        })
+
+        operatorOrder.pop();
+
+        return removedString
+    }
+
+    else{
+        arrayString = string.split('');
+        arrayString.pop();
+        removedString = '';
+        arrayString.forEach(char => {
+            removedString += char;
+        })
+        return removedString;
+    }
+}
+
+backspace.addEventListener('click', () => {
+    if(afterEquals == true && inputNumbers == false){
+        clearResults();
+    }
+
+    else if(valueOne != valueThree){
+        content.textContent = backTick(content.textContent);
+        valueOne = content.textContent;
+    }
+
+    else if(content.textContent.split(' ')[2] == false){
+        content.textContent = backTick(content.textContent);
+    }
+
+    else if(content.textContent.split(' ')[2]){
+        content.textContent = backTick(content.textContent);
+        valueTwoArray = content.textContent.split(' ')[2].toString().split('');
+        valueTwo = '';
+        valueTwoArray.forEach(char => {
+            valueTwo += char;
+        })
+    }
+})
 
 
 operators = [add, multiply, subtract, divide]
 operators.forEach(operator => {
     operator.addEventListener('click', () => {
 
-        //vallow negative numbers
+        //allow negative numbers
         console.log(`this is the content.textContent: ${content.textContent}`)
         if(operator == subtract && content.textContent == '0'){
             content.textContent = subtract.textContent;
