@@ -208,7 +208,7 @@ operators.forEach(operator => {
 
         //allow negative numbers
         console.log(`this is the content.textContent: ${content.textContent}`)
-        if(operator == subtract && content.textContent == '0'){
+        if((operator == subtract && content.textContent == '0') || (operator == subtract && content.textContent == '')){
             content.textContent = subtract.textContent;
             valueOne += subtract.textContent;
         }
