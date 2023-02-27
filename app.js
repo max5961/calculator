@@ -49,9 +49,8 @@ function clearResults(){
     valueThree = null;
     operatorOrder = [];
     content.textContent = '0';
-    outputValue.textContent = '0';
     inputNumbers = true;
-    errorMessage.style.display = 'none'
+    errorMessage.style.visibility = 'hidden';
 }
 
 clear.addEventListener('click', clearResults);
@@ -62,10 +61,13 @@ numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero];
 numberButtons.forEach(number => {
     console.log(number);
     number.addEventListener('click', () => {
-        if(content.textContent.slice(-2,-1) == '/' && number == zero){
-            errorMessage.style.display = 'flex';
+        //check if last operator input is '/' and zero button is pressed
+        //OR
+        //check if last operator input is '/' and minus sign is inputted before the zero
+        if((content.textContent.slice(-2,-1) == '/' && number == zero) || (number == zero && content.textContent.slice(-3,-2) == '/' && content.textContent.slice(-1) == '-')){
+            errorMessage.style.visibility = 'visible';
         } else {
-            errorMessage.style.display = 'none';
+            errorMessage.style.visibility = 'hidden';
             if(afterEquals == true && inputNumbers == false){
                 clearResults();
             }
@@ -92,8 +94,8 @@ numberButtons.forEach(number => {
 
 
 decimalPoint.addEventListener('click', () => {
-    if(content.textContent == '0' && inputNumbers && valueOne != valueThree){
-        content.textContent += decimalPoint.textContent;
+    if((content.textContent == '0' || content.textContent == '') && inputNumbers && valueOne != valueThree){
+        content.textContent = '0.';
         valueOne += decimalPoint.textContent;
     } else if(content.textContent.length < 24 && inputNumbers && valueOne != valueThree){
         hasDecimals = content.textContent.split("");
@@ -216,7 +218,6 @@ operators.forEach(operator => {
             //inputValueOne = !inputValueOne;
             operatorOrder.push(operator.textContent)
             valueThree = operate(valueOne, valueTwo, valueThree, operatorOrder);
-            outputValue.textContent = valueThree;
             content.textContent = valueThree;
             content.textContent += ` ${operator.textContent} `;
             console.log(content.textContent);
@@ -252,7 +253,6 @@ function logEquations(){
 equals.addEventListener('click', () => {
     if(valueTwo != '' && valueTwo != '-'){
         valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
-        outputValue.textContent = valueThree;
         content.textContent = valueThree;
         logEquations();
         operatorOrder = [];
@@ -293,6 +293,8 @@ function operate(value1, value2, value3, operatorOrder){
         value3 = value3.toFixed(3);
         console.log(value3);
         value3 = Number(value3);
+
+        logEquations();
     }
 
     return value3;

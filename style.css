@@ -23,21 +23,23 @@ body {
     flex-direction: column;
     padding: 10px;
     margin-bottom: 20px;
-    background-color: rgb(77, 70, 70);
-    color: rgb(36, 199, 36);
+    background-color: rgb(170, 112, 159);
+    color: #2b0000;
+
 }
 
 #zeroDivide {
-    display: none;
+    visibility: hidden;
     font-weight: 900;
     font-size: 15px;
+    height: 18px;
 }
 
 .content {
     padding: 5px;
     border: 2px solid black;
     border-radius: 4px;
-    box-shadow: 2px 4px;
+    box-shadow: 2px 4px black;
 }
 
 #console {
