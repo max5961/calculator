@@ -213,7 +213,7 @@ operators.forEach(operator => {
         }
 
         else if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
-        (content.textContent.slice(-2,-1) != '-' || content.textContent.slice(1) != '-') &&
+        (content.textContent.slice(-2,-1) != '-' && content.textContent.slice(-1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
             inputNumbers = true;
