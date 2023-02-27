@@ -52,14 +52,6 @@ function clearResults(){
 
 clear.addEventListener('click', clearResults);
 
-/*
-function checkIfOperatorInput(content){
-    return (content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
-    (content.textContent.slice(-2,-1) != '-') &&
-    (content.textContent.slice(-2,-1) != '*') &&
-    (content.textContent.slice(-2,-1) != '/');
-}
-*/
 
 
 numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero];
@@ -213,7 +205,7 @@ operators.forEach(operator => {
         }
 
         else if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
-        (content.textContent.slice(-2,-1) != '-' && content.textContent.slice(-1) != '-') &&
+        (content.textContent.slice(-2,) != '- ' && content.textContent.slice(-1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
             inputNumbers = true;
