@@ -239,8 +239,17 @@ operators.forEach(operator => {
     })
 })
 
-function logEquations(){
+function getEquationEquals(valueOne, valueTwo, valueThree){
     let equation = `${valueOne} ${operatorOrder[operatorOrder.length - 1]} ${valueTwo} = ${valueThree}`;
+    return equation;
+}
+
+function getEquationOperator(valueOne, valueTwo, valueThree){
+    let equation = `${valueOne} ${operatorOrder[operatorOrder.length - 2]} ${valueTwo} = ${valueThree}`;
+    return equation;
+}
+
+function logEquations(){
     equationStack.push(equation);
     if(equationStack.length >= 6){
         equationStack.shift();
@@ -262,6 +271,7 @@ equals.addEventListener('click', () => {
     if(valueTwo != '' && valueTwo != '-'){
         valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
         content.textContent = valueThree;
+        equation = getEquationEquals(valueOne, valueTwo, valueThree);
         logEquations();
         operatorOrder = [];
         valueOne = valueThree;
@@ -302,6 +312,7 @@ function operate(value1, value2, value3, operatorOrder){
         console.log(value3);
         value3 = Number(value3);
 
+        equation = getEquationOperator(value1, value2, value3);
         logEquations();
     }
 
