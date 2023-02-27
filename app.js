@@ -3,6 +3,8 @@ let valueTwo = '';
 let valueThree = null;
 console.log(valueOne != valueThree);
 operatorOrder = [];
+let count = 0;
+let equationStack = [];
 
 
 let inputValueOne = true;
@@ -38,6 +40,8 @@ const backspace = document.getElementById('backspace');
 
 //hidden divide by zero error message
 const errorMessage = document.getElementById('zeroDivide');
+
+const log = document.querySelector('.logContainer');
 
 function clearResults(){
     valueOne = '';
@@ -205,7 +209,7 @@ operators.forEach(operator => {
         }
 
         else if((content.textContent != '') && (content.textContent.slice(-2,-1) != '+') &&
-        (content.textContent.slice(-2,) != '- ' && content.textContent.slice(-1) != '-') &&
+        (content.textContent.slice(-2) != '- ' && content.textContent.slice(-1) != '-') &&
         (content.textContent.slice(-2,-1) != '*') &&
         (content.textContent.slice(-2,-1) != '/')){
             inputNumbers = true;
@@ -226,16 +230,36 @@ operators.forEach(operator => {
     })
 })
 
+function logEquations(){
+    let equation = `${valueOne} ${operatorOrder[operatorOrder.length - 1]} ${valueTwo} = ${valueThree}`;
+    equationStack.push(equation);
+    if(equationStack.length >= 6){
+        equationStack.shift();
+    }
+
+    while(log.firstChild){
+        log.removeChild(log.firstChild);
+    }
+
+    equationStack.forEach(el => {
+        let logEquation = document.createElement("div");
+        logEquation.textContent = el;
+        logEquation.style.margin = '5px'
+        log.insertAdjacentElement('beforeend', logEquation);
+    })
+}
+
 equals.addEventListener('click', () => {
-    if(valueTwo != ''){
+    if(valueTwo != '' && valueTwo != '-'){
         valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
         outputValue.textContent = valueThree;
         content.textContent = valueThree;
+        logEquations();
         operatorOrder = [];
         valueOne = valueThree;
         valueTwo = '';
         inputNumbers = false;
-        afterEquals = true; 
+        afterEquals = true;
     }
 })
 
@@ -252,6 +276,7 @@ function operate(value1, value2, value3, operatorOrder){
         } else if(operator == '/'){
             value3 = Number(value1);
         }
+    
     } else if(operatorOrder.length > 1){
         console.log(operatorOrder[operatorOrder.length - 2]);
 
@@ -264,11 +289,12 @@ function operate(value1, value2, value3, operatorOrder){
         } else if(operatorOrder[operatorOrder.length - 2] == '/'){
             value3 = Number(value1) / Number(value2);
         }
+
+        value3 = value3.toFixed(3);
+        console.log(value3);
+        value3 = Number(value3);
     }
 
-    value3 = value3.toFixed(3);
-    console.log(value3);
-    value3 = Number(value3);
     return value3;
 }
 

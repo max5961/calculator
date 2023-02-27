@@ -13,6 +13,20 @@ body {
     gap: 5px;
 }
 
+.logContainer {
+    height: 140px;
+    width: 206px;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: 1px 2px black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(77, 70, 70);
+    color: rgb(36, 199, 36);
+}
+
 #zeroDivide {
     display: none;
     font-weight: 900;
