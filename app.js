@@ -126,67 +126,65 @@ decimalPoint.addEventListener('click', () => {
     }
 })
 
-function backTick(string){
-    if(string == '0' || string == ''){
-        return string;
-    }
-
-    else if(string.split(' ')[2]){
-        let arrayString = string.split(' ')[2].toString().split('');
-        arrayString.pop()
-        let removedString = '';
-        arrayString.forEach(char => {
-            removedString += char;
-        })
-        string = string.split(' ')[0] + ` ${string.split(' ')[1]} ` + removedString;
-        return string;
-    }
-
-    else if(string.split(' ')[1]){
-        arrayString = string.split(' ')[0].toString().split('');
-        removedString = '';
-        arrayString.forEach(char => {
-            removedString += char;
-        })
-
-        operatorOrder.pop();
-
-        return removedString
+function backTick(test){
+    if(test == ''){
+        return test;
     }
 
     else{
-        arrayString = string.split('');
-        arrayString.pop();
-        removedString = '';
-        arrayString.forEach(char => {
-            removedString += char;
-        })
-        return removedString;
-    }
+        let array = test.split(' ');
+        let length = array.length;
+
+        if(length == 3 && array[2] != ''){
+            let finalString = '';
+            endArray = array[2];
+            endArray = endArray.toString();
+            endArray = endArray.split("");
+            endArray.pop();
+            endArray.forEach(char => {
+                finalString += char;
+            })
+
+            string = array[0] + ` ${array[1]} ` + finalString;
+
+            valueTwo = finalString;
+
+            return string;
+        }
+        
+        else if(length == 3 && array[2] == ''){
+            array.pop();
+            array.pop();
+            finalString = ''
+            array.forEach(char => {
+                finalString += char;
+            })
+
+            operatorOrder.pop();
+
+            return finalString;
+        }
+
+        else if (length == 1 && array[0] != ''){
+            array = array.toString();
+            array = array.split("");
+            array.pop();
+            finalString = '';
+            array.forEach(char => {
+                finalString += char;
+            })
+
+            valueOne = finalString;
+
+            return finalString;
+        }
+        }
+    
 }
 
+
 backspace.addEventListener('click', () => {
-    if(afterEquals == true && inputNumbers == false){
-        clearResults();
-    }
-
-    else if(valueOne != valueThree){
-        content.textContent = backTick(content.textContent);
-        valueOne = content.textContent;
-    }
-
-    else if(content.textContent.split(' ')[2] == false){
-        content.textContent = backTick(content.textContent);
-    }
-
-    else if(content.textContent.split(' ')[2]){
-        content.textContent = backTick(content.textContent);
-        valueTwoArray = content.textContent.split(' ')[2].toString().split('');
-        valueTwo = '';
-        valueTwoArray.forEach(char => {
-            valueTwo += char;
-        })
-    }
+    content.textContent = backTick(content.textContent);
 })
 
 
