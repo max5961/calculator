@@ -235,14 +235,16 @@ operators.forEach(operator => {
 })
 
 equals.addEventListener('click', () => {
-    valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
-    outputValue.textContent = valueThree;
-    content.textContent = valueThree;
-    operatorOrder = [];
-    valueOne = valueThree;
-    valueTwo = '';
-    inputNumbers = false;
-    afterEquals = true;
+    if(valueTwo != ''){
+        valueThree = finalOperate(valueOne, valueTwo, valueThree, operatorOrder);
+        outputValue.textContent = valueThree;
+        content.textContent = valueThree;
+        operatorOrder = [];
+        valueOne = valueThree;
+        valueTwo = '';
+        inputNumbers = false;
+        afterEquals = true; 
+    }
 })
 
 
