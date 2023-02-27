@@ -43,6 +43,14 @@ const errorMessage = document.getElementById('zeroDivide');
 
 const log = document.querySelector('.logContainer');
 
+const clearLog = document.querySelector('.clearLog');
+clearLog.addEventListener('click', () => {
+    while(log.firstChild){
+        log.removeChild(log.firstChild);
+    }
+    equationStack = [];
+})
+
 function clearResults(){
     valueOne = '';
     valueTwo = '';

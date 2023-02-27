@@ -28,6 +28,18 @@ body {
 
 }
 
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 226px;
+}
+
+.headerContainer button {
+    height: 20px;
+    width: 100px
+}
+
 #zeroDivide {
     visibility: hidden;
     font-weight: 900;
