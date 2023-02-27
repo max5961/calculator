@@ -36,6 +36,9 @@ const equals = document.getElementById('equals');
 const clear = document.getElementById('clear');
 const backspace = document.getElementById('backspace');
 
+//hidden divide by zero error message
+const errorMessage = document.getElementById('zeroDivide');
+
 function clearResults(){
     valueOne = '';
     valueTwo = '';
@@ -44,6 +47,7 @@ function clearResults(){
     content.textContent = '0';
     outputValue.textContent = '0';
     inputNumbers = true;
+    errorMessage.style.display = 'none'
 }
 
 clear.addEventListener('click', clearResults);
@@ -62,26 +66,30 @@ numberButtons = [one, two, three, four, five, six, seven, eight, nine, zero];
 numberButtons.forEach(number => {
     console.log(number);
     number.addEventListener('click', () => {
-        if(afterEquals == true && inputNumbers == false){
-            clearResults();
-        }
-
-        if(content.textContent.length < 25 && inputNumbers && (valueOne != valueThree)){
-            console.log(content.textContent == '0');
-            if(content.textContent == '0'){
-                content.textContent = '';
+        if(content.textContent.slice(-2,-1) == '/' && number == zero){
+            errorMessage.style.display = 'flex';
+        } else {
+            errorMessage.style.display = 'none';
+            if(afterEquals == true && inputNumbers == false){
+                clearResults();
             }
-            content.textContent += number.textContent;
-            valueOne += number.textContent;
-            console.log(`from # click, inputValueOne should be true: ${inputValueOne}, valueOne: ${valueOne}`);
-            console.log(`from # click, inputValueOne should be true: ${inputValueOne}, valueTwo: ${valueTwo}`);
-            console.log(`valueOne != valueThree.  This is valueThree: ${valueThree}`)
-        } else if (content.textContent.length < 25 && inputNumbers){
-            content.textContent += number.textContent;
-            valueTwo += number.textContent
-            console.log(`from # click, inputValueOne should be false: ${inputValueOne}, valueOne: ${valueOne}`)
-            console.log(`from # click, inputValueOne should be false: ${inputValueOne}, valueTwo: ${valueTwo}`)
-            console.log(`valueOne should = valueThree.  This is valueThree: ${valueThree}`)
+            if(content.textContent.length < 25 && inputNumbers && (valueOne != valueThree)){
+                console.log(content.textContent == '0');
+                if(content.textContent == '0'){
+                    content.textContent = '';
+                }
+                content.textContent += number.textContent;
+                valueOne += number.textContent;
+                console.log(`from # click, inputValueOne should be true: ${inputValueOne}, valueOne: ${valueOne}`);
+                console.log(`from # click, inputValueOne should be true: ${inputValueOne}, valueTwo: ${valueTwo}`);
+                console.log(`valueOne != valueThree.  This is valueThree: ${valueThree}`)
+            } else if (content.textContent.length < 25 && inputNumbers){
+                content.textContent += number.textContent;
+                valueTwo += number.textContent
+                console.log(`from # click, inputValueOne should be false: ${inputValueOne}, valueOne: ${valueOne}`)
+                console.log(`from # click, inputValueOne should be false: ${inputValueOne}, valueTwo: ${valueTwo}`)
+                console.log(`valueOne should = valueThree.  This is valueThree: ${valueThree}`)
+            }
         }
         })
     })

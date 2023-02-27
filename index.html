@@ -10,39 +10,42 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="content">
-        <div id="outputValue">0</div>
-        <div id="console">0</div>
-        <div class="inputButtons">
-            <div class="row1">
-                <button id="clear">C</button>
-                <button id="backspace">backspace</button>
-                <button id="divide">/</button>
-            </div>
-            <div class="row2">
-                <button id="seven">7</button>
-                <button id="eight">8</button>
-                <button id="nine">9</button>
-                <button id="multiply">*</button>
-            </div>
-            <div class="row3">
-                <button id="four">4</button>
-                <button id="five">5</button>
-                <button id="six">6</button>
-                <button id="subtract">-</button>
-            </div>
-            <div class="row4">
-                <button id="one">1</button>
-                <button id="two">2</button>
-                <button id="three">3</button>
-                <button id="add">+</button>
-            </div>
-            <div class="row5">
-                <button id="zero">0</button>
-                <button id="decimalPoint">.</button>
-                <button id="equals">=</button>
+    <div class="contentContainer">
+        <div class="content">
+            <div id="outputValue">0</div>
+            <div id="console">0</div>
+            <div class="inputButtons">
+                <div class="row1">
+                    <button id="clear">C</button>
+                    <button id="backspace">backspace</button>
+                    <button id="divide">/</button>
+                </div>
+                <div class="row2">
+                    <button id="seven">7</button>
+                    <button id="eight">8</button>
+                    <button id="nine">9</button>
+                    <button id="multiply">*</button>
+                </div>
+                <div class="row3">
+                    <button id="four">4</button>
+                    <button id="five">5</button>
+                    <button id="six">6</button>
+                    <button id="subtract">-</button>
+                </div>
+                <div class="row4">
+                    <button id="one">1</button>
+                    <button id="two">2</button>
+                    <button id="three">3</button>
+                    <button id="add">+</button>
+                </div>
+                <div class="row5">
+                    <button id="zero">0</button>
+                    <button id="decimalPoint">.</button>
+                    <button id="equals">=</button>
+                </div>
             </div>
         </div>
+        <div id="zeroDivide">Error: cannot divide by zero</div>
     </div>
 
     <script src="./app.js"></script>
